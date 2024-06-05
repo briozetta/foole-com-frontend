@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .max-container {
+    max-width: 1440px;
+    margin: 0 auto 40px; 
+  }
+}
+
+@layer utilities {
+  .padding {
+    @apply sm:px-16 px-8 sm:py-24 py-12;
+  }
+
+  .padding-x {
+    @apply sm:px-16 px-8;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+
+  .infotext {
+    @apply text-slate-gray text-sm sm:text-lg leading-7;
+  }
+  .btnHover{
+    @apply  hover:scale-105 transform transition duration-300 ease-in-out
+  }
+  .inputs{
+    @apply w-full px-3 py-2 mt-1 border-2 rounded-xl focus:outline-none focus:border-coral-blue
+  }
+  .navlinks{
+    @apply px-4 py-2 text-[#ffff] text-lg font-semibold hover:text-[#adff2f]
+  }
+  .tabs {
+    @apply bg-gray-500 text-gray-50 px-5 py-2 rounded-3xl mr-2 btnHover text-lg;
+  }
+  
+  .Activetabs {
+    @apply bg-coral-blue text-gray-50 px-5 py-2 rounded-3xl mr-2 btnHover text-lg;
+  }
+  .removAarrow{
+    @apply [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]
+  }
+  
+  
+  @media (max-width: 640px) {
+    .tabs,
+    .Activetabs {
+      @apply px-2 py-1 text-sm;
+    }
+  }
+
+  @keyframes heroMove {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-16px);
+    }
+    100% {
+      transform: translateY(16px); 
+    }
+  }
+  
+  .animate-heroMove {
+    animation: heroMove 3s infinite;
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .animate-marquee {
+    display: inline-block;
+    min-width: 100%;
+    animation: marquee 18s linear infinite;
+  }
+  /* animations.css */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animated-overlay {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animated-form {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+  
+  
+}
