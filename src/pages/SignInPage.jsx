@@ -21,7 +21,7 @@ const SignInPage = () => {
 
     try {
       dispatch(signInStart());
-      const { data } = await axios.post("/sign-in", formData);
+      const { data } = await axios.post("/sign-in", formData,{ withCredentials: true })
       dispatch(signInSuccess(data));
       toast.success('SignIn successful!',{position:"top-center"});
       navigate("/");

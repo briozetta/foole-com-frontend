@@ -14,6 +14,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./components/shared/ResetPassword";
 import ShoppingCart from "./pages/ShoppingCart";
 import PlaceOrderPage from "./pages/PlaceOrderPage";
+
 axios.defaults.baseURL = "http://localhost:5000/api/v1";
 axios.defaults.withCredentials = true;
 
