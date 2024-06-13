@@ -17,15 +17,15 @@ const Navbar = () => {
   const [isAgent, setIsAgent] = useState();
   const [cartItems, setCartItems] = useState([]);
 
-  const fetchCart = async () => {
-    try {
-      const { data } = await axios.get(`/cart/${currentUser._id}`);
-      setCartItems(data);
-    } catch (error) {}
-  };
+  // const fetchCart = async () => {
+  //   try {
+  //     const { data } = await axios.get(`/cart/${currentUser._id}`);
+  //     setCartItems(data);
+  //   } catch (error) {}
+  // };
 
   useEffect(() => {
-    fetchCart();
+    // fetchCart();
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
       setScrolled(scrollTop > 50);
@@ -46,15 +46,14 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentUser, fetchCart]);
+  }, [currentUser]);
 
   const handleSignout = async () => {
     try {
       await axios.get("/logout");
       dispatch(signout());
-      window.location.reload();
       navigate("/");
-      toast.warning("Logout Success!", { position: "top-center" });
+      toast.warning("logout Success!", { position: "top-center" });
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +65,8 @@ const Navbar = () => {
       : "text-darker-gray-medium hover:text-gray-950";
   };
 
-  const totalDistinctItems = cartItems.length;
+  const totalDistinctItems = 2
+  //cartItems.length;
 
   return (
     <header

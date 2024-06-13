@@ -13,20 +13,20 @@ export default function ProductDetailsCard({ product, refreshData }) {
     setShowAlert(false);
   };
 
-  const handleCopyLink = () => {
-    const productLink = `${window.location.origin}/shared-product/${product._id}/${currentUser._id}`;
-    if (navigator.share) {
-      navigator.share({
-        title: product.productName,
-        text: 'Check out this product!',
-        url: productLink,
-      })
-      .then(() => console.log('Successful share'))
-      .catch((error) => console.log('Error sharing', error));
-    } else {
-      handleCopyLink();
-    }
-  };
+  // const handleCopyLink = () => {
+  //   const productLink = `${window.location.origin}/shared-product/${product._id}/${currentUser._id}`;
+  //   if (navigator.share) {
+  //     navigator.share({
+  //       title: product.productName,
+  //       text: 'Check out this product!',
+  //       url: productLink,
+  //     })
+  //     .then(() => console.log('Successful share'))
+  //     .catch((error) => console.log('Error sharing', error));
+  //   } else {
+  //     handleCopyLink();
+  //   }
+  // };
 
   return (
     <div className="max-w-sm mx-auto p-7 border-[1.5px] border-gray-200 bg-white rounded-xl  overflow-hidden md:max-w-6xl">
@@ -88,12 +88,12 @@ export default function ProductDetailsCard({ product, refreshData }) {
                 )}
               </div>
             ) : (
-              <div className="flex">
-                <button onClick={handleCopyLink} className="px-2 py-2 flex items-center gap-2 justify-center
+              <Link to={`/product/${product._id}`} className="flex">
+                <button className="px-2 py-2 flex items-center gap-2 justify-center
                  text-darker-gray-medium bg-slate-200 font-medium ml-2 btnHover rounded-md">
-                  Share Link <FaShareAlt />
+                  View <FaShareAlt />
                 </button>
-              </div>
+              </Link>
             )}
           </div>
         </div>

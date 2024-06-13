@@ -8,6 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import { toast } from 'react-toastify';
 
 export default function SingleProductPage({ item }) {
+  
   const { id } = useParams();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [singleProduct, setSingleProduct] = useState(null);
@@ -15,7 +16,13 @@ export default function SingleProductPage({ item }) {
   const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
-    fetchProducts();
+    if(id){
+      fetchProducts();
+    }else{
+      setLoading(false)
+      setSingleProduct(item)
+    }
+    console.log(product);
   }, [id]);
  
   const fetchProducts = async () => {
@@ -34,7 +41,7 @@ export default function SingleProductPage({ item }) {
     setSelectedImageIndex(index);
   };
 
-  const product = singleProduct || item;
+  const product = singleProduct ;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,7 +77,7 @@ export default function SingleProductPage({ item }) {
                 <Skeleton key={index} width={80} height={80} />
               ))
             ) : (
-              product.images.map((image, index) => (
+              product?.images?.map((image, index) => (
                 <img
                   key={index}
                   src={image}

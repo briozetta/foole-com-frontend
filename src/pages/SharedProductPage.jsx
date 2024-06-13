@@ -6,9 +6,10 @@ import axios from 'axios'
 const SharedProductPage = () => {
     const {agentId,productId} = useParams()
     const [item,setItem] = useState()
+    let id = productId
 
     useEffect(() => {
-        axios.get(`/products/${productId}`)
+        axios.get(`/products/${id}`)
           .then(response => {
             const fetchedProduct = response.data;
             console.log(fetchedProduct);
