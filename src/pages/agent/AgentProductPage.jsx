@@ -6,7 +6,6 @@ const AgentProductPage = () => {
   return (
     <>
     <ProductList/>
-     
     </>
   );
 };

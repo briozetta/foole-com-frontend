@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate ,useLocation} from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const ResetPassword = () => {
@@ -8,11 +8,14 @@ const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
   const { token } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
+    const {otpCode,resetPassEmail}= location.state;
     e.preventDefault();
     try {
-      const { data } = await axios.post(`/reset-password/${token}`, { password });
+      const { data } = await axios.post(`/reset-password`,
+         { password,email:resetPassEmail,otp:otpCode });
       if (data) {
         setPassword("");
         toast.success('Password has been reset');

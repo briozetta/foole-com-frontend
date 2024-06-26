@@ -23,7 +23,6 @@ const handleFileChange = async (files, handleFieldChange) => {
       { position: "top-center", theme: "dark", transition: Zoom }
     );
     const response = await uploadPromise;
-    console.log("result::::::",response.data);
     handleFieldChange("images", response.data);
   } catch (error) {
     console.error("Error:", error.message);

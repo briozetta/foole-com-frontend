@@ -2,12 +2,17 @@ import React from 'react'
 import Hero from '../section/Hero'
 import Divider from '../components/helpers/Divider'
 import Card from '../components/Card'
+import PopularCategories from '../components/shared/PopularCategories'
+import CategorySlider from '../components/helpers/CategorySlider'
+import RunningAds from '../components/helpers/RunningAds'
 
 const HomePage = () => {
   return (
     <>
      <section><Hero/></section> 
-     <section><Divider/></section>
+     <section><CategorySlider/></section>
+     <section><PopularCategories/></section>
+     <section><RunningAds /></section>
      <section><Card/></section>
     </>
   )

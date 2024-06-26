@@ -145,8 +145,9 @@ const PlaceOrderPage = () => {
                     </button>
                   </div>
 
-                  <OrderSummary cartItems={cartItems} shippingMethod={shippingMethod}
-                   calculateTotal={calculateTotal}/>
+                  <OrderSummary selectedAddress={selectedAddress} currentUser={currentUser}
+                  cartItems={cartItems} shippingMethod={shippingMethod}
+                  calculateTotal={calculateTotal}/>
                 </div>
 
                 <div className="mt-12">

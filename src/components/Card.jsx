@@ -3,6 +3,7 @@ import Filter from "./Filter";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useInView } from "react-intersection-observer";
+import { ColorRing } from "react-loader-spinner";
 
 const Card = () => {
   const [products, setProducts] = useState([]);
@@ -85,8 +86,8 @@ const Card = () => {
 
   return (
     <div className="bg-gray-50">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-darker-gray">
+      <div className="mx-auto max-w-2xl px-0 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 className="text-2xl sm:text-4xl sm:px-0 px-5 poppins-bold tracking-tight text-darker-gray">
           Discover Our <span className="text-darker-gray-light">Products</span>
         </h2>
         <Filter
@@ -97,45 +98,55 @@ const Card = () => {
           products={products}
         />
 
-        <div className="mt-6 grid grid-cols-1 bg-primary gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 shadow-lg p-9 rounded-md">
-          {filteredProducts.map((product) => (
-            <div
-              key={product._id}
-              className="group relative bg-slate-200 btnHover rounded-xl p-3 flex flex-col"
-            >
-              <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-64 flex-grow">
+        <div className="container mt-10 mb-6 mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 gap-0 ">
+            {filteredProducts.map((product) => (
+              <Link to={`/product/${product._id}`}
+                key={product._id}
+                className="bg-white border rounded-sm sm:rounded-md border-gray-300 p-4 sm:border-gray-200
+                shadow-lg flex flex-col transform transition-transform hover:scale-105"
+              >
                 <img
                   src={product?.images[0]}
-                  alt={product?.images[0]}
-                  className="h-full w-full object-fill p-2 object-center lg:h-56 lg:w-full"
+                  alt={product?.productName}
+                  className="w-full h-44 object-contain bg-zinc-100  mb-3"
                 />
-              </div>
-              <div className="flex flex-col mt-1">
-                <h1 className="text-lg font-bold text-darker-gray">
+                <div className="p-3">
+                <h2 className="text-base poppins-semibold text-darker-gray-medium mb-1 line-clamp-1">
                   {product.productName}
-                </h1>
-                <div className="mt-2 flex justify-between items-center">
-                  <Link to={`/product/${product._id}`}
-                    className="text-sm bg-darker-gray rounded-lg p-2 btnHover
-           hover:bg-black text-gray-100 cursor-pointer"
-                  >
-                    Buy now
-                  </Link>
-                  <p className="text-md font-medium text-gray-900">
-                    ₹{product.price}
-                  </p>
+                </h2>
+                <div className="sm:flex flex-col sm:flex-row  items-center mb-4">
+                <div className="flex items-center">
+                 <span className="text-red-500 text-lg font-normal mr-2">-27%</span>
+                 <p className="sm:text-xl text-lg font-semibold text-gray-800">
+                   ₹{product.price}
+                 </p>
+                 
+               </div>
+            <button className=" text-darker-blue poppins-regular py-1 px-4 rounded-md hover:from-darker-gray-medium hover:to-blue-700 transition-colors">
+                Buy Now
+                </button>
+          </div>
                 </div>
-              </div>
-            </div>
-          ))}
+                
+              </Link>
+            ))}
+          </div>
         </div>
-
         {hasMore && <div ref={ref}></div>}
 
         {loading && (
-          <p className="text-darker-gray-medium text-center mt-9 font-semibold">
-            products Loading please wait...
-          </p>
+          <div className="flex justify-center">
+            <ColorRing
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#2A3054", "#3A4374", "#647196", "#3A4374", "#2A3054"]}
+            />
+          </div>
         )}
       </div>
     </div>

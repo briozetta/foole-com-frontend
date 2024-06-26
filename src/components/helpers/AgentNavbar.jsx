@@ -1,9 +1,12 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { FcMoneyTransfer } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom"; // Import Link
 import { FaArrowLeft } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
+import logo from "../../assets/logo2.png";
+import { useSelector } from "react-redux";
 
 const user = {
   name: "name",
@@ -12,9 +15,8 @@ const user = {
     "https://cdn3d.iconscout.com/3d/premium/thumb/administrator-6853609-5625724.png?f=webp",
 };
 const navigation = [
-  { name: "Users", href: "/agent-main", current: true },
-  { name: "Agent comission", href: "/agent-commision", current: false },
-
+  { name: "Add users", href: "/agent-add-users", current: true },
+  { name: "My users", href: "/agent-users", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -27,27 +29,27 @@ function classNames(...classes) {
 }
 
 export default function AgentNavbar() {
-  const navigate = useNavigate()
-  const loaction = useLocation();
+  const { totalRewardEarned } = useSelector((state) => state.cartCount);
+  const navigate = useNavigate();
   const goBack = () => {
-    navigate(-1)
+    navigate(-1);
   };
   return (
     <div className="">
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-darker-gray py-3">
+        <Disclosure as="nav" className="bg-gray-200 py-3">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0">
+                    <Link to={"/"} className="flex-shrink-0">
                       <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="h-16 w-16"
+                        src={logo}
                         alt="Your Company"
                       />
-                    </div>
+                    </Link>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
@@ -56,9 +58,9 @@ export default function AgentNavbar() {
                             to={item.href} // Use "to" instead of "href"
                             className={classNames(
                               location.pathname === item.href
-                                ? "bg-primary text-darker-gray"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                              "rounded-md px-3 py-2 text-lg font-medium"
+                                ? "bg-darker-blue text-gray-50"
+                                : "text-gray-800 hover:bg-gray-700 hover:text-white",
+                              "rounded-md px-3 py-2 text-lg poppins-semibold"
                             )}
                             aria-current={item.current ? "page" : undefined}
                           >
@@ -79,7 +81,7 @@ export default function AgentNavbar() {
                             <img
                               className="h-10 w-10 rounded-full bg-white"
                               src={user.imageUrl}
-                              alt=""
+                              alt="avtar"
                             />
                           </Menu.Button>
                         </div>
@@ -159,7 +161,7 @@ export default function AgentNavbar() {
                       <img
                         className="h-10 w-10 rounded-full"
                         src={user.imageUrl}
-                        alt=""
+                        alt="avatar"
                       />
                     </div>
                     <div className="ml-3">
@@ -189,23 +191,29 @@ export default function AgentNavbar() {
           )}
         </Disclosure>
 
-        <header className="bg-gray-300 shadow">
+        <header className="bg-gradient-to-r from-zinc-800 to-zinc-900 shadow">
           <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-            <h1
-              className="sm:text-3xl text-2xl font-bold  text-darker-gray
+            <div className="flex justify-between items-center">
+              <h1
+                className="sm:text-3xl text-2xl font-bold  text-primary
             flex items-center gap-2 mb-6"
-            >
-              Dashboard <MdDashboard />
-            </h1>
-           
-              <button
-              onClick={goBack}
-                className="bg-darker-blue text-primary px-2 rounded-lg font-semibold py-1 btnHover
-            gap-2 mb-2 flex justify-center items-center"
               >
-                <FaArrowLeft /> Back
-              </button>
-           
+                Dashboard <MdDashboard />
+              </h1>
+              <h2 className="text-darker-gray-medium shadow-md bg-gray-100 poppins-bold gap-1 px-4 py-4 text-lg rounded-lg">
+                Total Earnings{" "}
+                <span className="flex justify-center items-center text-green-600 gap-2">
+                  <FcMoneyTransfer /> ₹{totalRewardEarned.toFixed(2)}
+                </span>
+              </h2>
+            </div>
+            <button
+              onClick={goBack}
+              className="bg-darker-blue text-primary px-2 rounded-lg font-semibold py-1 btnHover
+            gap-2 mb-2 flex justify-center items-center"
+            >
+              <FaArrowLeft /> Back
+            </button>
           </div>
         </header>
       </div>

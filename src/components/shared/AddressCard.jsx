@@ -46,6 +46,9 @@ export default function AddressCard({
           }`}
           onClick={() => handleAddressSelect(address)}
         >
+          <span  className="absolute text-sm top-2 right-9 text-yellow-600">
+           {!address._id&&"Primary"}
+        </span >
           {selectedAddress === address && (
             <GrRadialSelected
               size={20}

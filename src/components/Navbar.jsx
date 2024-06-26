@@ -5,24 +5,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { signout } from "../redux/userSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
-import logo from "../assets/logo1.png";
+import logo from "../assets/logo2.png";
+import { GoSignOut } from "react-icons/go";
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const { totalDistinctItems } = useSelector((state) => state.cartCount)
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [isAgent, setIsAgent] = useState();
-  const [cartItems, setCartItems] = useState([]);
-
-  // const fetchCart = async () => {
-  //   try {
-  //     const { data } = await axios.get(`/cart/${currentUser._id}`);
-  //     setCartItems(data);
-  //   } catch (error) {}
-  // };
 
   useEffect(() => {
     // fetchCart();
@@ -65,7 +59,7 @@ const Navbar = () => {
       : "text-darker-gray-medium hover:text-gray-950";
   };
 
-  const totalDistinctItems = 2
+  
   //cartItems.length;
 
   return (
@@ -78,9 +72,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto">
         <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-60 max-w-full px-4">
-            <Link to={"/"} className="block w-full py-5">
-              <img src={logo} alt="logo" className="w-full" />
+          <div className="w-[106px] max-w-full px-4">
+            <Link to={"/"} className="block w-full ">
+              <img src={logo} alt="logo"  />
             </Link>
           </div>
           <div className="flex w-full items-center justify-between px-4">
@@ -168,8 +162,8 @@ const Navbar = () => {
                     </Link>
                   )}
                   {isAgent && (
-                    <Link to={"/agent-main"}>
-                      <ListItem className={getNavLinkClass("/agent-main")}>
+                    <Link to={"/agent-add-users"}>
+                      <ListItem className={getNavLinkClass("/agent-add-users")}>
                         Agent-Dashboard
                       </ListItem>
                     </Link>
@@ -186,7 +180,7 @@ const Navbar = () => {
                         size={32}
                         className="text-red-700 mx-1"
                       />
-                      <span className=" text-red-700 rounded-full px-2 py-1 text-xl font-bold ml-6 mt-1 absolute">
+                      <span className=" text-red-700 rounded-full px-3 py-1 text-xl font-bold ml-6 mt-1 absolute">
                         {totalDistinctItems}
                       </span>
                     </div>
@@ -196,9 +190,9 @@ const Navbar = () => {
                   </h1>
                   <button
                     onClick={handleSignout}
-                    className="bg-darker-gray text-primary rounded-md px-2 btnHover"
+                    className="bg-darker-gray flex items-center justify-center gap-2 text-primary rounded-md px-2 btnHover"
                   >
-                    Signout
+                    Logout <GoSignOut />
                   </button>
                 </>
               ) : (

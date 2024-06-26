@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
+import UserAddForm from "../components/shared/UserAddForm";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -17,6 +18,7 @@ export default function ProductList() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const { currentUser } = useSelector((state) => state.user);
+  const [showSignupForm, setShowSignupForm] = useState(false);
 
   const [ref, inView] = useInView({
     threshold: 0.2,
@@ -65,7 +67,8 @@ export default function ProductList() {
           setHasMore(false);
         } else {
           setProducts((prevProducts) => {
-            const newProducts = page === 1 ? data.result : [...prevProducts, ...data.result];
+            const newProducts =
+              page === 1 ? data.result : [...prevProducts, ...data.result];
             return newProducts;
           });
         }
@@ -98,11 +101,17 @@ export default function ProductList() {
 
   return (
     <>
+    {showSignupForm&& <div className=" z-50 absolute ">
+      <UserAddForm setShowSignupForm={setShowSignupForm} 
+      currentUser={currentUser}/>
+      </div>}
       <div className="padding-x mt-7 ">
         <div className="flex items-center justify-between">
           <h1 className="font-bold text-4xl text-darker-gray mb-1">
             Your <span className="text-darker-gray-medium">Products</span>
           </h1>
+          {currentUser && currentUser.role === "Agent" && <button onClick={()=>setShowSignupForm(true)} className="bg-darker-gray-medium text-white
+           px-3 py-1 rounded-md">Add Users</button>}
           {currentUser && currentUser.role === "Admin" ? (
             <Link to={"/admin-add-products"}>
               <button className="px-4 py-2 text-white bg-darker-gray-medium rounded hover:bg-darker-gray-light transition duration-300 ease-in-out flex justify-center items-center gap-1 btnHover">
@@ -152,15 +161,14 @@ export default function ProductList() {
 
       {/* Display Products */}
       {filteredProducts
-  .filter(product => !product.disabled)
-  .map((product, index) => (
-    <ProductDetailsCard
-      key={index}
-      product={product}
-      refreshData={refreshData}
-    />
-  ))}
-
+        .filter((product) => !product.disabled)
+        .map((product, index) => (
+          <ProductDetailsCard
+            key={index}
+            product={product}
+            refreshData={refreshData}
+          />
+        ))}
 
       {/* Intersection observer target */}
       {hasMore && <div ref={ref}></div>}

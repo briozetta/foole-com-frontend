@@ -6,7 +6,6 @@ export default function ProfileForm({
   onHandleUpdate,
   loading,
 }) {
-  
   return (
     <>
       <form
@@ -71,7 +70,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.mobileNo || ""}
+                defaultValue={currentUser?.address?.mobileNo || ""}
                 type="tel"
                 name="mobileNo"
                 onChange={handleChange}
@@ -86,7 +85,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.mobileNo2  || ""}
+                defaultValue={currentUser?.address?.mobileNo2 || ""}
                 type="tel"
                 onChange={handleChange}
                 id="mobileNo2"
@@ -101,7 +100,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.state  || ""}
+                defaultValue={currentUser?.address?.state || ""}
                 type="text"
                 onChange={handleChange}
                 id="state"
@@ -115,7 +114,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.district  || ""}
+                defaultValue={currentUser?.address?.district || ""}
                 type="text"
                 onChange={handleChange}
                 id="district"
@@ -130,7 +129,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.pincode  || ""}
+                defaultValue={currentUser?.address?.pincode || ""}
                 type="number"
                 onChange={handleChange}
                 id="pincode"
@@ -145,7 +144,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.houseNo  || ""}
+                defaultValue={currentUser?.address?.houseNo || ""}
                 type="text"
                 onChange={handleChange}
                 id="houseNo"
@@ -160,7 +159,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.locality  || ""}
+                defaultValue={currentUser?.address?.locality || ""}
                 type="text"
                 onChange={handleChange}
                 id="locality"
@@ -175,7 +174,7 @@ export default function ProfileForm({
             </label>
             <div className="mt-2.5">
               <input
-                defaultValue={currentUser?.address[0]?.nearbyLandmark  || ""}
+                defaultValue={currentUser?.address?.nearbyLandmark || ""}
                 type="text"
                 onChange={handleChange}
                 id="nearbyLandmark"

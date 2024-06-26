@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const SignupForm = ({ loading, error, onHandleChange, handleSubmit }) => {
   return (
-    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm bg-zinc-50 shadow-md p-9">
+    <div className="mt-1 sm:mx-auto sm:w-full sm:max-w-sm bg-zinc-50 shadow-md p-9">
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="flex gap-2">
           <div>
             <label className="block text-sm font-medium leading-6 text-gray-900">
-              Last Name
+              First Name
             </label>
             <div className="mt-2">
               <input
@@ -23,7 +24,7 @@ const SignupForm = ({ loading, error, onHandleChange, handleSubmit }) => {
           </div>
           <div>
             <label className="block text-sm font-medium leading-6 text-gray-900">
-              First Name
+              Last Name
             </label>
             <div className="mt-2">
               <input
@@ -95,11 +96,13 @@ const SignupForm = ({ loading, error, onHandleChange, handleSubmit }) => {
         Don't have an account?{" "}
         <Link
           to={"/sign-in"}
+          // state={}
           className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
         >
-          Sign up
+          Sign In
         </Link>
       </p>
+      
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalDistinctItems } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 import CartItems from "../components/shared/CartItems";
 import EmptyCartMessage from "../components/shared/EmptyCartMessage";
@@ -10,9 +11,10 @@ const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const fetchCart = async () => {
+ const fetchCart = async () => {
     try {
       const response = await axios.get(`/cart/${currentUser._id}`);
  
@@ -44,12 +46,15 @@ const ShoppingCart = () => {
   };
 
   useEffect(() => {
+    const totalDistinctItems = cartItems.length;
+    dispatch(setTotalDistinctItems(totalDistinctItems));
     if (!currentUser) {
       navigate("/");
     } else {
       fetchCart();
     }
-  }, [currentUser, navigate]);
+  }, [currentUser, navigate,cartItems, dispatch]);
+
 
   const updateQuantityOnServer = async (userId, productId, quantity) => {
     try {
@@ -107,6 +112,7 @@ const ShoppingCart = () => {
   );
 
   const totalDistinctItems = cartItems.length;
+ 
 
   if (loading) {
     return <CartSkeleton />;

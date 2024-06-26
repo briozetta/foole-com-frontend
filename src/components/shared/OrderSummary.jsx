@@ -1,6 +1,46 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-export default function OrderSummary({ cartItems, shippingMethod,calculateTotal }) {
+export default function OrderSummary({
+  currentUser,
+  cartItems,
+  shippingMethod,
+  calculateTotal,
+  selectedAddress,
+}) {
+  const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTotal(calculateTotal());
+  }, []);
+  const handlePlaceOrder = async () => {
+    try {
+      if(!selectedAddress){
+        return toast.warning("please select an address");
+      }
+      const orderDetails = {
+        userId:currentUser._id,
+        items: cartItems,
+        shippingMethod,
+        shippingAddress: selectedAddress,
+        totalAmount: total,
+      };
+      const response = await axios.post("/place-order", {orderDetails});
+     
+      if (response.status === 201) {
+        // Handle successful order placement
+        navigate('/')
+        // You can navigate to a confirmation page or show a success message
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      toast.error("Please complete your Address on profile page");
+      // Handle the error, e.g., show an error message to the user
+    }
+  };
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-6 text-gray-700">
@@ -34,7 +74,7 @@ export default function OrderSummary({ cartItems, shippingMethod,calculateTotal 
           <p>Total</p>
           <p>€{calculateTotal().toFixed(2)}</p>
         </div>
-        <button className="mt-6 w-full bg-gradient-to-r from-darker-gray to-darker-gray-medium text-white py-3 rounded-lg hover:from-darker-gray-medium hover:to-darker-gray-light transition duration-300 shadow-md transform hover:scale-105">
+        <button  onClick={handlePlaceOrder} className="mt-6 w-full bg-gradient-to-r from-darker-gray to-darker-gray-medium text-white py-3 rounded-lg hover:from-darker-gray-medium hover:to-darker-gray-light transition duration-300 shadow-md transform hover:scale-105">
           Place order
         </button>
       </div>

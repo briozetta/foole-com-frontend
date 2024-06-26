@@ -1,5 +1,6 @@
 // AppImports.js
-import React from "react";
+
+import React, { Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HomePage from "../pages/HomePage";
@@ -22,6 +23,7 @@ import AgentNavbar from "../components/helpers/AgentNavbar";
 
 export {
   React,
+  Suspense,
   Routes,
   Route,
   useLocation,
