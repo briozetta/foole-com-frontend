@@ -160,6 +160,7 @@ export default function ProductList() {
       </div>
 
       {/* Display Products */}
+      <>
       {filteredProducts
         .filter((product) => !product.disabled)
         .map((product, index) => (
@@ -169,6 +170,7 @@ export default function ProductList() {
             refreshData={refreshData}
           />
         ))}
+      </>
 
       {/* Intersection observer target */}
       {hasMore && <div ref={ref}></div>}

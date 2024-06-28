@@ -203,7 +203,7 @@ export default function AgentNavbar() {
               <h2 className="text-darker-gray-medium shadow-md bg-gray-100 poppins-bold gap-1 px-4 py-4 text-lg rounded-lg">
                 Total Earnings{" "}
                 <span className="flex justify-center items-center text-green-600 gap-2">
-                  <FcMoneyTransfer /> ₹{totalRewardEarned.toFixed(2)}
+                  <FcMoneyTransfer /> ₹{totalRewardEarned.toFixed(2) || 0}
                 </span>
               </h2>
             </div>

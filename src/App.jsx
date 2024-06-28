@@ -22,6 +22,9 @@ import AgentUsersPage from "./pages/agent/AgentUsersPage";
 import UserDetailsPage from "./pages/agent/UserDetailsPage";
 import OrderListPage from "./pages/admin/OrderListPage";
 import ViewFullOrder from "./pages/admin/ViewFullOrder";
+import UserInfoPage from "./pages/admin/UserInfoPage";
+import AddedUsers from "./pages/admin/AddedUsers";
+import MyAgents from "./pages/admin/MyAgents.";
 
 
 
@@ -61,6 +64,15 @@ const App = () => {
         </Route>
         <Route path="/admin-view-order" element={<AdminCheck />}>
           <Route index element={<ViewFullOrder/>} />
+        </Route>
+        <Route path="/admin-user-details" element={<AdminCheck />}>
+          <Route index element={<UserInfoPage/>} />
+        </Route>
+        <Route path="/admin-added-user" element={<AdminCheck />}>
+          <Route index element={<AddedUsers/>} />
+        </Route>
+        <Route path="/admin-my-agents" element={<AdminCheck />}>
+          <Route index element={<MyAgents/>} />
         </Route>
         <Route
           path="/agent-add-users"

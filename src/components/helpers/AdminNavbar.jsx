@@ -13,6 +13,7 @@ const user = {
 };
 const navigation = [
   { name: "Users", href: "/admin", current: true },
+  { name: "Agents", href: "/admin-my-agents", current: true },
   { name: "Add-Category", href: "/admin-add-category", current: false },
   { name: "Products", href: "/admin-all-products", current: false },
   { name: "All-Orders", href: "/admin-all-orders", current: false },
@@ -37,7 +38,7 @@ export default function AdminNavbar() {
   return (
     <div className="">
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-darker-gray py-3">
+        <Disclosure as="nav" className="bg-gradient-to-r from-slate-700 to-gray-900 py-3">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

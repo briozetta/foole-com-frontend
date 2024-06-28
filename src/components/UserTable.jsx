@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ToggleButton from "./helpers/ToggleButton";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function UserTable() {
   const [users, setUsers] = useState([]);
@@ -85,7 +86,7 @@ export default function UserTable() {
                           </span>
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 text-darker-blue hover:underline cursor-pointer">
-                          View details
+                         <Link to='/admin-user-details' state={user}>View details</Link>
                         </td>
                         <td className="whitespace-nowrap px-8 py-4">
                           <ToggleButton user={user} />
