@@ -1,6 +1,5 @@
 import React from 'react'
 import Hero from '../section/Hero'
-import Divider from '../components/helpers/Divider'
 import Card from '../components/Card'
 import PopularCategories from '../components/shared/PopularCategories'
 import CategorySlider from '../components/helpers/CategorySlider'

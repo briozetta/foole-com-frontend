@@ -17,7 +17,7 @@ const navigation = [
   { name: "Add-Category", href: "/admin-add-category", current: false },
   { name: "Products", href: "/admin-all-products", current: false },
   { name: "All-Orders", href: "/admin-all-orders", current: false },
-  { name: "Reports", href: "#", current: false },
+  { name: "Shipped-orders", href: "/admin-shipped-orders", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },

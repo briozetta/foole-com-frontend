@@ -12,7 +12,6 @@ const SharedProductPage = () => {
         axios.get(`/products/${id}`)
           .then(response => {
             const fetchedProduct = response.data;
-            console.log(fetchedProduct);
           setItem(fetchedProduct)
           })
           .catch(error => {

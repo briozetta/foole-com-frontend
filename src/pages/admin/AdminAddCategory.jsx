@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TodoForm from '../../components/helpers/admin/TodoForm';
 import TodoList from '../../components/helpers/admin/TodoList';
+import { toast } from 'react-toastify';
 
 
 const AdminAddCategory = () => {
@@ -40,6 +41,7 @@ const AdminAddCategory = () => {
         setTodoImageBase64("");
       }
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error("Error adding todo:", error);
     }
   };
@@ -83,6 +85,7 @@ const AdminAddCategory = () => {
       setEditValue("");
       setEditImageBase64("");
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error("Error updating todo:", error);
     }
   };

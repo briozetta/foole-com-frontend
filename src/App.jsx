@@ -25,6 +25,8 @@ import ViewFullOrder from "./pages/admin/ViewFullOrder";
 import UserInfoPage from "./pages/admin/UserInfoPage";
 import AddedUsers from "./pages/admin/AddedUsers";
 import MyAgents from "./pages/admin/MyAgents.";
+import ShippedOrders from "./pages/admin/ShippedOrders";
+import DetailedPage from "./pages/DetailedPage";
 
 
 
@@ -62,6 +64,9 @@ const App = () => {
         <Route path="/admin-all-orders" element={<AdminCheck />}>
           <Route index element={<OrderListPage/>} />
         </Route>
+        <Route path="/admin-shipped-orders" element={<AdminCheck />}>
+          <Route index element={<ShippedOrders/>} />
+        </Route>
         <Route path="/admin-view-order" element={<AdminCheck />}>
           <Route index element={<ViewFullOrder/>} />
         </Route>
@@ -97,6 +102,7 @@ const App = () => {
         <Route path="/verify-email/:id" element={<Verification />} />
         <Route path="/forgot-password" element={<ForgotPassword/>} />
         <Route path="/reset-password/:token" element={<ResetPassword/>} />
+        <Route path="/products-details" element={<DetailedPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/product/:id" element={<SingleProductPage />} />
         <Route path="/shared-product/:productId/:agentId" element={<SharedProductPage/>} />
